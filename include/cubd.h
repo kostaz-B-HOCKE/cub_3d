@@ -21,7 +21,26 @@
 # include	"minilibx_opengl_20191021/mlx.h"
 
 
+typedef struct s_info
+{
+    char **argv;
+    int height;
+    int width;
 
+}       t_info;
+
+//init
+void    init_info(t_info **new);
+
+//parsing.c
+int parsing(int argc, char **argv, t_info *info);
+
+//utilus
+int   ft_error(char *str);
+
+void    free_info(t_info **info);
+
+char	*get_next_line_mod(int fd);mak
 
 
 #endif

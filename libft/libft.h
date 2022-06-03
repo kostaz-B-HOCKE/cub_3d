@@ -48,6 +48,7 @@ char	*ft_strrchr(const char *s, int c);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free_s1(char *s1, char const *s2);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strdup(const char *s1);
 
@@ -71,5 +72,11 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+char	*get_next_line(int fd);
+
+void    ft_print_darr(char **argv, int fd);
+//free
+void    ft_free_darr(char **argv);
 
 #endif
