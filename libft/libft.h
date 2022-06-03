@@ -75,8 +75,4 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 char	*get_next_line(int fd);
 
-void    ft_print_darr(char **argv, int fd);
-//free
-void    ft_free_darr(char **argv);
-
 #endif

@@ -1,4 +1,5 @@
 #include "../include/cubd.h"
+#define	BUFFER_SIZE 1
 
 static char	*ftt_strjoin(char *s1, char *s2)
 {
@@ -28,7 +29,7 @@ static int	kot(int fd, char *buf, char **thc)
 {
     int	b;
 
-    b = read(fd, buf, 10);
+    b = read(fd, buf, BUFFER_SIZE);
     while (b > 0)
     {
         buf[b] = '\0';
@@ -38,7 +39,7 @@ static int	kot(int fd, char *buf, char **thc)
             *thc = ftt_strjoin(*thc, buf);
         if (ft_strchr(buf, '\n'))
             break ;
-        b = read(fd, buf, 10);
+        b = read(fd, buf, BUFFER_SIZE);
     }
     free(buf);
     return (b);
@@ -79,8 +80,8 @@ char	*get_next_line_mod(int fd)
     char		*buf;
     int			b;
 
-    buf = malloc(sizeof(char) * (10 + 1));
-    if (fd == -1 || !buf || read(fd, buf, 0) == -1)
+    buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+    if (BUFFER_SIZE <= 0 || fd == -1 || !buf || read(fd, buf, 0) == -1)
     {
         free(buf);
         return (NULL);

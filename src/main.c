@@ -8,12 +8,12 @@ int main(int argc, char **argv)
     void *wind;
 
     init_info(&info);
-    if (parsing(argc, argv, info))
-        return (1);
+    parsing(argc, argv, info);
 
 
 
 
+    printf("free\n");
     free_info(&info);
     //    mlx = mlx_init();
 //    wind = mlx_new_window(mlx, 1920, 1080, "Pom");

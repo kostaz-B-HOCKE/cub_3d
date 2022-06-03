@@ -20,7 +20,6 @@
 # include	<fcntl.h>
 # include	"minilibx_opengl_20191021/mlx.h"
 
-
 typedef struct s_info
 {
     char **argv;
@@ -40,7 +39,10 @@ int   ft_error(char *str);
 
 void    free_info(t_info **info);
 
-char	*get_next_line_mod(int fd);mak
+char	*get_next_line_mod(int fd);
 
 
+
+void    ft_free_darr(char **argv);
+void    ft_print_darr(char **argv, int fd);
 #endif
