@@ -1,5 +1,21 @@
 #include "../include/cubd.h"
 
+//int check_digit(t_info *info)
+//{
+//    int i;
+//    int j;
+//
+//    i = -1;
+//    while (info->argv[++i])
+//    {
+//        j = -1;
+//        while (info->argv[i][++j])
+//            if (!ft_isdigit(info->argv[i][j]))  //добавить знаки
+//                return (ft_error("bad argument.\n"));
+//    }
+//    return (0);
+//}
+
 char *association_str(char **s_str)
 {
     char *str;
@@ -15,23 +31,28 @@ char *association_str(char **s_str)
 int chek_input_values(t_info *info, int i1)
 {
     int i;
-    int j;
     char **s_str;
     char **new_argv;
+    int flag;
 
     i = -1;
+    flag = 0;
+//    ft_print_darr(info->argv, 1);
     new_argv = malloc(sizeof(char *) * 100);
     if (!new_argv)
         return (1);
     while (info->argv[++i])
     {
         s_str = ft_split(info->argv[i], ' ');
-        new_argv[i] = association_str(s_str);
+        if (!pars_word(s_str, info))
+            flag = 1;
+        if (flag == 1)
+            new_argv[i] = association_str(s_str);
         ft_free_darr(s_str);
     }
     ft_free_darr(info->argv);
     info->argv = new_argv;
-    ft_print_darr(info->argv, 1);
+//    ft_print_darr(info->argv, 1);
     return (0);
 }
 
@@ -58,6 +79,5 @@ int parsing(int argc, char **argv, t_info *info)
         else
             free(str);
     }
-//    return (1);
     return (chek_input_values(info, i));
 }

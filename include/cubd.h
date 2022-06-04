@@ -25,7 +25,11 @@ typedef struct s_info
     char **argv;
     int height;
     int width;
-
+    void    *NO;
+    void    *SO;
+    void    *WE;
+    int     *F;
+    int     *S;
 }       t_info;
 
 //init
@@ -36,13 +40,16 @@ int parsing(int argc, char **argv, t_info *info);
 
 //utilus
 int   ft_error(char *str);
+int check_digit_str(char *str);
+void    ft_free_darr(char **argv);
+void    ft_print_darr(char **argv, int fd);
+
 
 void    free_info(t_info **info);
 
 char	*get_next_line_mod(int fd);
 
+int pars_word(char **s_str, t_info *info);
 
 
-void    ft_free_darr(char **argv);
-void    ft_print_darr(char **argv, int fd);
 #endif
