@@ -33,4 +33,6 @@ void    ft_print_darr(char **argv, int fd)
             ft_putstr_fd("\n", fd);
         }
     }
+    else
+        ft_putstr_fd("no ARGV\n", fd);
 }

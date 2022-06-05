@@ -25,15 +25,17 @@ typedef struct s_info
     char **argv;
     int height;
     int width;
+    void *wind;
+    void *mlx;
     void    *NO;
     void    *SO;
     void    *WE;
-    int     *F;
-    int     *S;
+    int     F[4];
+    int     S[4];
 }       t_info;
 
 //init
-void    init_info(t_info **new);
+void    init_info(t_info *new);
 
 //parsing.c
 int parsing(int argc, char **argv, t_info *info);
@@ -51,5 +53,9 @@ char	*get_next_line_mod(int fd);
 
 int pars_word(char **s_str, t_info *info);
 
+int word_add_NO(t_info *tmp);
+int word_add_SO(t_info *tmp);
+int word_add_WE(t_info *tmp);
+int word_add_EA(t_info *tmp);
 
 #endif

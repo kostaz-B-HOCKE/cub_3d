@@ -36,7 +36,7 @@ int word_add_F(t_info *info, char **s_str)
     return (0);
 }
 
-int word_add_S(t_info *info, char **s_str)
+int word_add_C(t_info *info, char **s_str)
 {
     int i;
     char **str_split;
@@ -61,22 +61,22 @@ int pars_word(char **s_str, t_info *info)
     if (!ft_strcmp(s_str[0], "R"))
         return (word_add_R(info, s_str));
     if (!ft_strcmp(s_str[0], "NO"))
-        printf("R\n");
+        return (word_add_NO(info));
     if (!ft_strcmp(s_str[0], "SO"))
-        printf("R\n");
+        return (word_add_SO(info));
     if (!ft_strcmp(s_str[0], "WE"))
-        printf("R\n");
+        return (word_add_WE(info));
     if (!ft_strcmp(s_str[0], "EA"))
-        printf("EA\n");
+        return (word_add_EA(info));
     if (!ft_strcmp(s_str[0], "S"))
-        printf("S\n");
+        return (0);
     if (!ft_strcmp(s_str[0], "ST"))
-        printf("ST\n");
+        return (0);
     if (!ft_strcmp(s_str[0], "FT"))
-        printf("FT\n");
+        return (0);
     if (!ft_strcmp(s_str[0], "F"))
         return (word_add_F(info, s_str));
     if (!ft_strcmp(s_str[0], "C"))
-        printf("C\n");
+        return (word_add_C(info, s_str));
     return (1);
 }
