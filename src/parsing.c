@@ -10,7 +10,7 @@ int check_digit_arr(char **argv)
     {
         j = -1;
         while (argv[i][++j])
-            if (!ft_isdigit(argv[i][j]) && argv[i][j] != 'S' && argv[i][j] != 'N')
+            if (!ft_isdigit(argv[i][j]) && argv[i][j] != 'S' && argv[i][j] != 'N')  //добавить знаки
             {
                 printf("c:%c\n", argv[i][j]);
                 return (ft_error("bad argument.\n"));
@@ -44,17 +44,19 @@ int chek_input_values(t_info *info, int i1)
     int n;
 
     flag = 0;
-    ft_print_darr(info->argv, 1);
+//    ft_print_darr(info->argv, 1);
     i = -1;
+    while (info->argv[++i])
+        ;
     new_argv = malloc(sizeof(char *) * i + 1);
     if (!new_argv)
-        return (1);
+        exit(1);
     i = -1;
     while (info->argv[++i])
     {
 //        printf("WWWW\n");
         s_str = ft_split(info->argv[i], ' ');
-        printf("s_str:%s\n", s_str[0]);
+//        printf("s_str:%s\n", s_str[0]);
         if (flag == 0 && pars_word(s_str, info)) {
             flag = 1;
             n = i;
@@ -70,7 +72,6 @@ int chek_input_values(t_info *info, int i1)
 //    printf("or\n");
 //    while (new_argv[++j])
 //        new_argv[j] = 0;
-
     ft_free_darr(info->argv);
     info->argv = new_argv;
 //    ft_print_darr(info->argv, 1);
@@ -100,6 +101,5 @@ int parsing(int argc, char **argv, t_info *info)
         else
             free(str);
     }
-
     return (chek_input_values(info, i));
 }
