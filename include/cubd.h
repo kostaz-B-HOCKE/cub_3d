@@ -30,8 +30,8 @@ typedef struct s_info
     void    *NO;
     void    *SO;
     void    *WE;
-    int     F[4];
-    int     S[4];
+    int     F;
+    int     C;
 }       t_info;
 
 //init
@@ -48,12 +48,13 @@ void    ft_print_darr(char **argv, int fd);
 
 
 void    free_info(t_info **info);
+char *association_str(char **s_str);
 
 char	*get_next_line_mod(int fd);
 
 int pars_word(char **s_str, t_info *info);
 
-int word_add_NO(t_info *tmp);
+int word_add_NO(t_info *tmp, char **s_str);
 int word_add_SO(t_info *tmp);
 int word_add_WE(t_info *tmp);
 int word_add_EA(t_info *tmp);

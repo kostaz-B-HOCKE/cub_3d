@@ -26,7 +26,6 @@ char *association_str(char **s_str)
     int j;
 
     j = -1;
-    check_digit_arr(s_str);
     str = ft_strdup(s_str[0]);
     i = 0;
     while (s_str[++i])
@@ -65,6 +64,7 @@ int chek_input_values(t_info *info, int i1)
 //            printf("2s_str:%s\n", s_str[0]);
             j = i - n;
 //            printf("j:%d\n", j);
+            check_digit_arr(s_str);
             new_argv[j] = association_str(s_str);
         }
         ft_free_darr(s_str);

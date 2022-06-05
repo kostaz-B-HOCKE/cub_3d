@@ -29,9 +29,7 @@ int word_add_F(t_info *info, char **s_str)
     str_split = ft_split(s_str[1], ',');
     if (check_digit_str(str_split[0]) || check_digit_str(str_split[1]) || check_digit_str(str_split[2]))
         return (ft_error("bad argument.\n"));
-    info->F[0] = ft_atoi(str_split[0]);
-    info->F[1] = ft_atoi(str_split[1]);
-    info->F[2] = ft_atoi(str_split[2]);
+    info->F = ft_atoi(association_str(str_split));
     ft_free_darr(str_split);
     return (0);
 }
@@ -49,9 +47,7 @@ int word_add_C(t_info *info, char **s_str)
     str_split = ft_split(s_str[1], ',');
     if (check_digit_str(str_split[0]) || check_digit_str(str_split[1]) || check_digit_str(str_split[2]))
         return (ft_error("bad argument.\n"));
-    info->S[0] = ft_atoi(str_split[0]);
-    info->S[1] = ft_atoi(str_split[1]);
-    info->S[2] = ft_atoi(str_split[2]);
+    info->C = ft_atoi(association_str(str_split));
     ft_free_darr(str_split);
     return (0);
 }
@@ -61,7 +57,7 @@ int pars_word(char **s_str, t_info *info)
     if (!ft_strcmp(s_str[0], "R"))
         return (word_add_R(info, s_str));
     if (!ft_strcmp(s_str[0], "NO"))
-        return (word_add_NO(info));
+        return (word_add_NO(info, s_str));
     if (!ft_strcmp(s_str[0], "SO"))
         return (word_add_SO(info));
     if (!ft_strcmp(s_str[0], "WE"))
