@@ -15,13 +15,11 @@ int word_add_NO(t_info *info, char **s_str)
 
     x = 0;
     y = 0;
-
-
 //    info->NO = mlx_png_file_to_image(info->mlx,"./textures/wall.png", &x, &y);
-    printf("|1|\n");
+//    printf("|1|\n");
 //    info->NO = mlx_xpm_file_to_image(info->mlx, "./textures/11.xpm", &x, &i);
-    info->NO = mlx_xpm_file_to_image(info->mlx, "textures/wall.xpm", &x, &i);
-    printf("|2|\n");
+    info->NO = mlx_xpm_file_to_image(info->mlx, "textures/wall.xpm", &x, &y);
+//    printf("|2|\n");
     return (0);
 }
 
