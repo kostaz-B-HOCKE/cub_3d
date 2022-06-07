@@ -72,7 +72,7 @@ int chek_input_values(t_info *info, int i1)
     ft_free_darr(info->argv);
     info->argv = new_argv;
 //    ft_print_darr(info->argv, 1);
-    return (0);
+    return (wall_inspection(info));
 }
 
 int parsing(int argc, char **argv, t_info *info)

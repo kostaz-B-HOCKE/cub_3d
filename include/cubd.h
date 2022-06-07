@@ -51,6 +51,7 @@ char *association_str(char **s_str);
 
 char	*get_next_line_mod(int fd);
 
+int wall_inspection(t_info *info);
 int pars_word(char **s_str, t_info *info);
 
 int word_add_NO(t_info *info, char **s_str);
