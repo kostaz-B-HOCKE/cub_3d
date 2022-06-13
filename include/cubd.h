@@ -23,6 +23,7 @@
 typedef struct s_info
 {
     char **argv;
+    char **check;
     int height;
     int width;
     void *wind;
@@ -32,6 +33,8 @@ typedef struct s_info
     void    *WE;
     int     F;
     int     C;
+    int     x;
+    int     y;
 }       t_info;
 
 //init
@@ -45,6 +48,7 @@ int   ft_error(char *str);
 int check_digit_str(char *str);
 void    ft_free_darr(char **argv);
 void    ft_print_darr(char **argv, int fd);
+char **ft_strdup_two(char **s1);
 
 void    free_info(t_info **info);
 char *association_str(char **s_str);
@@ -58,5 +62,15 @@ int word_add_NO(t_info *info, char **s_str);
 int word_add_SO(t_info *tmp);
 int word_add_WE(t_info *tmp);
 int word_add_EA(t_info *tmp);
+
+int offset_1(t_info *o);
+int offset_2(t_info *o);
+int offset_3(t_info *o);
+int offset_4(t_info *o);
+int offset_5(t_info *o);
+int offset_6(t_info *o);
+int offset_7(t_info *o);
+int offset_8(t_info *o);
+int offset_9(t_info *o);
 
 #endif

@@ -3,7 +3,7 @@ SRCS_DIR	= src/
 OBJS_DIR	= obj/
 INCS_DIR	= include
 SRCS_F		= main.c parsing.c utilus.c init_info.c func_free.c get_next_line_mod.c part_word.c add_textures.c\
-			  wall_inspection.c
+			  wall_inspection.c wall_direction.c
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_F))
 OBJS_F		= $(patsubst %.c, %.o, $(SRCS_F))
 DEPS_F		= $(patsubst %.c, %.d, $(SRCS_F))

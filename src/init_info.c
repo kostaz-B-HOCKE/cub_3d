@@ -13,6 +13,9 @@ void    init_info(t_info *new)
 //    if (!(*new)->S)
 //        exit(1);
     (new)->argv = NULL;
+    new->check = NULL;
     (new)->height = 720;
     (new)->width = 480;
+    new->x = -1;
+    new->y = -1;
 }

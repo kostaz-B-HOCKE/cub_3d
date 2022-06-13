@@ -44,19 +44,17 @@ int main(int argc, char **argv)
 //    printf("'11111111/'\n");
     info.mlx = mlx_init();
 //    printf("22222222222'/''/''/''/''/''/'\n");
+
     parsing(argc, argv, &info);
-    printf("'/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/'\n");
+//    printf("'/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/''/'\n");
 //    ft_print_darr(info.argv, 1);
 
 //    info.mlx = mlx_init();
-    info.wind = mlx_new_window(info.mlx, info.height, info.width, "Cub 3D");
-    mlx_hook(info.wind, 2, 1L << 0, key_test, &info);
-
-    print_background(&info);
-    mlx_put_image_to_window(info.mlx, info.wind, info.NO, 50, 50);
+//    info.wind = mlx_new_window(info.mlx, info.height, info.width, "Cub 3D");
+//    mlx_hook(info.wind, 2, 1L << 0, key_test, &info);
+//    print_background(&info);
 //    print_one_textures(&info);
-
-    mlx_loop(info.mlx);
-    mlx_destroy_window (info.mlx, info.wind);
+//    mlx_loop(info.mlx);
+//    mlx_destroy_window (info.mlx, info.wind);
 }
 

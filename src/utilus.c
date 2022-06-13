@@ -36,3 +36,23 @@ void    ft_print_darr(char **argv, int fd)
     else
         ft_putstr_fd("no ARGV\n", fd);
 }
+
+char **ft_strdup_two(char **s1)
+{
+    int len;
+    char **s2;
+
+    if (!s1 || !*s1)
+        return(NULL);
+    len = 0;
+    while ((*s1)[len])
+        len++;
+    s2 = (char **)malloc(sizeof(char *) * (len + 1));
+    if (!s2)
+        return (NULL);
+    len = -1;
+    while (s1[++len])
+        s2[len] = ft_strdup(s1[len]);
+    s2[len] = 0;
+    return (s2);
+}
