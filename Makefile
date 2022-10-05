@@ -2,7 +2,7 @@ NAME		= cub3d
 SRCS_DIR	= src/
 OBJS_DIR	= obj/
 INCS_DIR	= include
-SRCS_F		= main.c init_info.c parsing.c utilus.c get_next_line_mod.c part_word.c add_textures.c func_free.c 
+SRCS_F		= main.c init_info.c parsing.c utilus.c get_next_line_mod.c t_part_word.c t_add_textures.c func_free.c 
 
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_F))
 OBJS_F		= $(patsubst %.c, %.o, $(SRCS_F))

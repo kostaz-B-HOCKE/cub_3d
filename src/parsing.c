@@ -1,39 +1,32 @@
 #include "../include/cubd.h"
 
-// int check_digit_arr(char **argv)
-// {
-//     int i;
-//     int j;
-
-//     i = -1;
-//     while (argv[++i])
-//     {
-//         j = -1;
-//         while (argv[i][++j])
-//             if (!ft_isdigit(argv[i][j]) && argv[i][j] != 'S' && argv[i][j] != 'N')  //добавить знаки
-//             {
-//                 printf("c:%c\n", argv[i][j]);
-//                 return (ft_error("bad argument.\n"));
-//             }
-//     }
-//     return (0);
-// }
-
-char *association_str(char **s_str)
+int check_digit_arr(char **argv)
 {
-    char *str;
     int i;
     int j;
 
-    if (s_str) {
+    i = -1;
+    while (argv[++i])
+    {
         j = -1;
-        str = ft_strdup(s_str[0]);
-        i = 0;
-        while (s_str[++i])
-            str = ft_strjoin_free_s1(str, s_str[i]);
-        return (str);
+        while (argv[i][++j])
+            if (!ft_isdigit(argv[i][j]) && argv[i][j] != 'S' && argv[i][j] != 'N' && argv[i][j] != ' ')  //добавить знаки
+            {
+                printf("c:%c\n", argv[i][j]);
+                return (ft_error("bad argument.\n"));
+            }
     }
     return (0);
+}
+
+int     association_str(char **s_str)
+{
+    int color;
+
+    color = ft_atoi(s_str[0]);
+    color = color + ft_atoi(s_str[1]) * 255;
+    color = color + ft_atoi(s_str[2]) * 255 * 255;
+    return (color);
 }
 
 // int chek_input_values(t_info *info, int i1)
@@ -100,6 +93,31 @@ void    construct_str(char *filename, t_info *o)
     o->s_str[++i] = 0;
 }
 
+void chek_zero(t_info *o)
+{
+    if (!(o->s_str[o->y][(o->x + 1)] && (o->s_str[o->y][(o->x + 1)] == '0' || o->s_str[o->y][(o->x + 1)] == 'N' || \
+    o->s_str[o->y][(o->x + 1)] == '1')) || !(o->s_str[o->y][(o->x - 1)] && (o->s_str[o->y][(o->x - 1)] == '0' || \
+    o->s_str[o->y][(o->x - 1)] == 'N' || o->s_str[o->y][(o->x - 1)] == '1')) || !(o->s_str[o->y + 1][o->x] && \
+    (o->s_str[o->y + 1][o->x] == '0' || o->s_str[o->y + 1][(o->x)] == 'N' || o->s_str[o->y + 1][(o->x)] == '1')) || \
+    !(o->s_str[o->y - 1][(o->x)] && (o->s_str[o->y - 1][(o->x)] == '0' || o->s_str[o->y - 1][(o->x)] == 'N' || o->s_str[o->y - 1][(o->x)] == '1'))) 
+        ft_error("bad mapw");                   
+}
+
+void    closed_walls(t_info *o)
+{
+    int i;
+    int j;
+
+    o->y = -1;
+    while (o->s_str[++(o->y)])
+    {
+        o->x = -1;
+        while (o->s_str[o->y][++(o->x)])
+            if (o->s_str[o->y][(o->x)] == '0' || o->s_str[o->y][(o->x)] == 'N')
+                chek_zero(o);
+    }
+}
+
 void    construct_argv(char *filename, t_info *o)
 {
     int ch_len;
@@ -111,10 +129,11 @@ void    construct_argv(char *filename, t_info *o)
     len = 0;
     count = 0;
     construct_str(filename, o);
-    // ft_print_darr(o->s_str, 1);
-    // printf("S:%s\n", o->s_str[0]);
     cheak_first_word(o);
+    closed_walls(o);
 
+
+    ft_print_darr(o->s_str, 1);
     // while ((lane = get_next_line(o->fd)))
     // {
     //     if (pars_word())
@@ -146,7 +165,6 @@ int parsing(int argc, char **argv, t_info *o)
         return (ft_error("invalid map.\n"));
     construct_argv(argv[1], o);
 
-    ft_print_darr(o->s_str, 1);
     // info->argv = malloc(sizeof(char *) * 300);
     // if (!info->argv)
     //     return (ft_error("malloc\n"));

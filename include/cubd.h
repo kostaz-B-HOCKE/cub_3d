@@ -26,8 +26,6 @@ typedef struct s_info
     char    **s_str;
 
 
-    void *mlx;
-
     int     x;
     int     y;
     int     fd;
@@ -35,8 +33,8 @@ typedef struct s_info
     // char **check;
     // int height;
     // int width;
-    // void *wind;
-    // void *mlx;
+    void    *wind;
+    void    *mlx;
     int     R_width;
     int     R_height;
     void    *NO;
@@ -68,7 +66,7 @@ char	*get_next_line_mod(int fd);
 
 
 void    free_info(t_info **info);
-char *association_str(char **s_str);
+int     association_str(char **s_str);
 
 
 // int wall_inspection(t_info *info);

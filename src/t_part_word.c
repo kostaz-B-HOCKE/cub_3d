@@ -13,7 +13,7 @@ int word_add_F(t_info *o, char **s_str)
     str_split = ft_split(s_str[1], ',');
     if (check_digit_str(str_split[0]) || check_digit_str(str_split[1]) || check_digit_str(str_split[2]))
         return (ft_error("bad argument.\n"));
-    o->F = ft_atoi(association_str(str_split));
+    o->F = association_str(str_split);
     ft_free_darr(str_split);
     return (0);
 }
@@ -31,7 +31,7 @@ int word_add_C(t_info *o, char **s_str)
     str_split = ft_split(s_str[1], ',');
     if (check_digit_str(str_split[0]) || check_digit_str(str_split[1]) || check_digit_str(str_split[2]))
         return (ft_error("bad argument.\n"));
-    o->C = ft_atoi(association_str(str_split));
+    o->C = association_str(str_split);
     ft_free_darr(str_split);
     return (0);
 }
