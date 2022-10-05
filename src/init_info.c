@@ -2,20 +2,21 @@
 
 void    init_info(t_info *new)
 {
-//    *new = (t_info*)malloc(sizeof(t_info*));
-//    if (!new)
-//        return ;
-//    (*new)->F = malloc(sizeof(int) * 3);
-//    if (!(*new)->F)
-//        exit(1);
-//    (*new)->F[3] = 0;
-//    (*new)->S = malloc(sizeof(int) * 3);
-//    if (!(*new)->S)
-//        exit(1);
-    (new)->argv = NULL;
-    new->check = NULL;
-    (new)->height = 720;
-    (new)->width = 480;
-    new->x = -1;
-    new->y = -1;
+    new->argv = NULL;
+    // new->check = NULL;
+    // new->height = 720;
+    // new->width = 480;
+    // new->R = 840,480
+    // new->C = 51,198,227;
+    // new->F = 184,113,39;
+    new->s_str = NULL;
+    new->NO = NULL;
+    new->SO = NULL;
+    new->WE = NULL;
+    // new->EA = NULL;
+    new->x = 0;
+    new->y = 0;
+    new->fd = 0;
+    new->R_width = 840;
+    new->R_height = 480;
 }

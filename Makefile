@@ -2,8 +2,8 @@ NAME		= cub3d
 SRCS_DIR	= src/
 OBJS_DIR	= obj/
 INCS_DIR	= include
-SRCS_F		= main.c parsing.c utilus.c init_info.c func_free.c get_next_line_mod.c part_word.c add_textures.c\
-			  wall_inspection.c wall_direction.c
+SRCS_F		= main.c init_info.c parsing.c utilus.c get_next_line_mod.c part_word.c add_textures.c func_free.c 
+
 SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_F))
 OBJS_F		= $(patsubst %.c, %.o, $(SRCS_F))
 DEPS_F		= $(patsubst %.c, %.d, $(SRCS_F))
@@ -11,7 +11,9 @@ OBJS		= $(addprefix $(OBJS_DIR), $(OBJS_F))
 DEPS		= $(addprefix $(OBJS_DIR), $(DEPS_F))
 
 CC			= cc
-CFLAGS		=
+# CFLAGS		= 
+CFLAGS		= -g -fsanitize=address
+# CFLAGS		= -g -fsanitize=address
 #CFLAGS		= -Wall -Wextra -Werror -MMD
 LFLAGS		= -Llibft -lft
 LIB			= libft.a
@@ -28,7 +30,8 @@ $(OBJS_DIR) :
 		mkdir -p $@
 
 $(NAME):  $(OBJS_DIR) $(OBJS) $(LIB_DIR)$(LIB)
-		@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(NAME) -lmlx -framework OPENGL -framework Appkit -lm $
+		@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(NAME) -Lmlx -lmlx  -framework OPENGL -framework Appkit -lm $
+
 
 $(LIB_DIR)$(LIB) : ;
 		make -C $(LIB_DIR)
@@ -47,3 +50,4 @@ re: fclean all
 		all clean fclean re bonus
 
 -include $(DEPS) $(DEPS_B)
+

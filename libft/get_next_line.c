@@ -101,16 +101,18 @@ char	*get_next_line(int fd)
 	return (kot2(&thc, b));
 }
 
-//int main()
-//{
-//	int fd;
-//	char *lene;
-//
-//	fd = open("text.txt", O_RDONLY);
-//	//	while ((lene = get_next_line(fd)))
-//	//		printf("%s", lene);
-//	lene = get_next_line(fd);
-//	printf("%s", lene);
-//	lene = get_next_line(fd);
-//	printf("%s", lene);
-//}
+
+// int main()
+// {
+// 	int fd;
+// 	char *lene;
+
+// 	fd = open("text.txt", O_RDONLY);
+// 	//	while ((lene = get_next_line(fd)))
+// 	//		printf("%s", lene);
+// 	lene = get_next_line(fd);
+// 	printf("%s", lene);
+// 	lene = get_next_line(fd);
+// 	printf("%s", lene);
+// }
+

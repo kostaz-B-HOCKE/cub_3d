@@ -16,14 +16,14 @@ BONUS_OBJS		= $(BONUS:.c=.o)
 
 CC				= gcc
 RM				= rm -f
-CFLAGS			= -Wall -Wextra -Werror -I.
+CFLAGS			= -mmacosx-version-min=11.0 -Wall -Wextra -Werror -I.
 
 NAME			= libft.a
 
-all:			$(NAME)
+all:			$(NAME) 
 
 $(NAME):		$(OBJS)
-				@ar rcs $(NAME) $(OBJS)
+				@ar rc $(NAME) $(OBJS)
 
 clean:
 				@$(RM) $(OBJS) $(BONUS_OBJS)
