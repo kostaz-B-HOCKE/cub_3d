@@ -20,6 +20,9 @@
 # include	<fcntl.h>
 # include	"../mlx/mlx.h"
 
+# define TEX_W 64
+# define TEX_H 64
+
 typedef struct s_info
 {
     char    **argv;
