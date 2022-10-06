@@ -25,13 +25,13 @@ int word_add_NO(t_info *o, char **s_str)
         ;
     if (i != 2)
         return (ft_error("bad argument.\n"));
-    // int	x;
-    // int	y;
-    // x = 0;
-    // y = 0;
-//    info->NO = mlx_png_file_to_image(info->mlx,"./textures/wall.png", &x, &y);
-//    info->NO = mlx_xpm_file_to_image(info->mlx, "./textures/11.xpm", &x, &i);
-    // info->NO = mlx_xpm_file_to_image(info->mlx, "textures/wall.xpm", &x, &y);
+    int	x;
+    int	y;
+    x = 0;
+    y = 0;
+    // o->NO = mlx_png_file_to_image(o->mlx,"./textures/wall.png", &x, &y);
+    o->NO = mlx_xpm_file_to_image(o->mlx, "./textures/11.xpm", &x, &i);
+    // o->NO = mlx_xpm_file_to_image(o->mlx, "textures/wall.xpm", &x, &y);
     return (0);
 }
 

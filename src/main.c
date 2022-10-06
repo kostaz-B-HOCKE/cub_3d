@@ -27,13 +27,13 @@ int print_background(t_info *o)
     return (0);
 }
 
-// int  print_one_textures(t_info *info)
-// {
+int  print_one_textures(t_info *info)
+{
 
-//     if (info->NO)
-//         mlx_put_image_to_window(info->mlx, info->wind, info->NO, 50, 50);
-//     return (0);
-// }
+    if (info->NO)
+        mlx_put_image_to_window(info->mlx, info->wind, info->NO, 50, 50);
+    return (0);
+}
 
 int main(int argc, char **argv)
 {
@@ -42,16 +42,15 @@ int main(int argc, char **argv)
     init_info(&o);
     o.mlx = mlx_init();
     parsing(argc, argv, &o);
-
 //    ft_print_darr(o.argv, 1);
-    o.mlx = mlx_init();
-    o.wind = mlx_new_window(o.mlx, o.R_height, o.R_width, "Cub 3D");
-    mlx_hook(o.wind, 2, 1L << 0, key_test, &o);
-    print_background(&o);
+    // o.mlx = mlx_init();
+    // o.wind = mlx_new_window(o.mlx, o.R_height, o.R_width, "Cub 3D");
+    // mlx_hook(o.wind, 2, 1L << 0, key_test, &o);
+    // print_background(&o);
 //    print_one_textures(&o);
 
-
-   mlx_loop(o.mlx);
-   mlx_destroy_window (o.mlx, o.wind);
+//    mlx_loop(o.mlx);
+//    mlx_destroy_window(o.mlx, o.wind);
 }
+
 

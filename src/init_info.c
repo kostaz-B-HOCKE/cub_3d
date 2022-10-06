@@ -11,7 +11,7 @@ void    init_info(t_info *new)
     new->NO = NULL;
     new->SO = NULL;
     new->WE = NULL;
-    // new->EA = NULL;
+    new->EA = NULL;
     new->x = 0;
     new->y = 0;
     new->fd = 0;

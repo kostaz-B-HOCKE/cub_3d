@@ -134,20 +134,8 @@ void    construct_argv(char *filename, t_info *o)
 
 
     ft_print_darr(o->s_str, 1);
-    // while ((lane = get_next_line(o->fd)))
-    // {
-    //     if (pars_word())
-    //     {
-    //         ch_len = ft_strlen(lane);
-    //         if (len < ch_len)
-    //             len = ch_len;
-    //         free(lane);
-    //         count++;
-    //     }
-    // }
     o->x = len;
     o->y = count;
-    // printf("%i  %i\n", o->x, o->y);
 }
 
 
