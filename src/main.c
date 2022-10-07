@@ -42,14 +42,16 @@ int main(int argc, char **argv)
     init_info(&o);
     o.mlx = mlx_init();
     parsing(argc, argv, &o);
-    ft_print_darr(o.argv, 1);
-    printf("git \n");
-    // o.mlx = mlx_init();
-    // o.wind = mlx_new_window(o.mlx, o.R_height, o.R_width, "Cub 3D");
-    // mlx_hook(o.wind, 2, 1L << 0, key_test, &o);
-    // print_background(&o);
-//    print_one_textures(&o);
+    // ft_print_darr(o.argv, 1);
+    // printf("git \n");
 
-//    mlx_loop(o.mlx);
-//    mlx_destroy_window(o.mlx, o.wind);
+    o.mlx = mlx_init();
+    o.wind = mlx_new_window(o.mlx, o.R_height, o.R_width, "Cub 3D");
+    mlx_hook(o.wind, 2, 1L << 0, key_test, &o);
+    print_background(&o);
+   print_one_textures(&o);
+
+   mlx_loop(o.mlx);
+   mlx_destroy_window(o.mlx, o.wind);
+
 }

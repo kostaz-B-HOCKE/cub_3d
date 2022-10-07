@@ -99,8 +99,32 @@ void chek_zero(t_info *o)
     o->s_str[o->y][(o->x + 1)] == '1')) || !(o->s_str[o->y][(o->x - 1)] && (o->s_str[o->y][(o->x - 1)] == '0' || \
     o->s_str[o->y][(o->x - 1)] == 'N' || o->s_str[o->y][(o->x - 1)] == '1')) || !(o->s_str[o->y + 1][o->x] && \
     (o->s_str[o->y + 1][o->x] == '0' || o->s_str[o->y + 1][(o->x)] == 'N' || o->s_str[o->y + 1][(o->x)] == '1')) || \
-    !(o->s_str[o->y - 1][(o->x)] && (o->s_str[o->y - 1][(o->x)] == '0' || o->s_str[o->y - 1][(o->x)] == 'N' || o->s_str[o->y - 1][(o->x)] == '1'))) 
+    !(o->s_str[o->y - 1][(o->x)] && (o->s_str[o->y - 1][(o->x)] == '0' || o->s_str[o->y - 1][(o->x)] == 'N' || o->s_str[o->y - 1][(o->x)] == '1')))
         ft_error("bad mapw");                   
+}
+
+int cheak_plaer(t_info *o)
+{
+    int i;
+    int j;
+    int flag;
+
+    i = -1;
+    flag = 0;
+    while (o->s_str[++i])
+    {
+        j = -1;
+        while (o->s_str[i][++j])
+            if (o->s_str[i][j] == 'N')
+            {
+                flag++;
+                o->y = i;
+                o->x = j;
+            }
+    }
+    if (flag != 1)
+        return (ft_error("bad argument.\n"));
+    return (0);
 }
 
 void    closed_walls(t_info *o)
@@ -116,6 +140,8 @@ void    closed_walls(t_info *o)
             if (o->s_str[o->y][(o->x)] == '0' || o->s_str[o->y][(o->x)] == 'N')
                 chek_zero(o);
     }
+    check_digit_arr(o->s_str);
+    cheak_plaer(o);
 }
 
 void    construct_argv(char *filename, t_info *o)
@@ -132,12 +158,9 @@ void    construct_argv(char *filename, t_info *o)
     cheak_first_word(o);
     closed_walls(o);
 
-
-    ft_print_darr(o->s_str, 1);
     o->x = len;
     o->y = count;
 }
-
 
 int parsing(int argc, char **argv, t_info *o)
 {
@@ -152,20 +175,6 @@ int parsing(int argc, char **argv, t_info *o)
     if (!ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
         return (ft_error("invalid map.\n"));
     construct_argv(argv[1], o);
-
-    // info->argv = malloc(sizeof(char *) * 300);
-    // if (!info->argv)
-    //     return (ft_error("malloc\n"));
-//     j = 0;
-//     fd = open(argv[1], O_RDONLY);
-//     while ((str = get_next_line_mod(fd)))
-//     {
-//         if (ft_strlen(str) != 0)
-//             info->argv[j++] = str;
-//         else
-//             free(str);
-//     }
-//     info->argv[j] = 0;
-//     return (chek_input_values(info, i));
     return (0);
 }
+

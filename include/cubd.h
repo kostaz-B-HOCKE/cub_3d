@@ -32,7 +32,6 @@ typedef struct s_info
     int     x;
     int     y;
     int     fd;
-
     // char **check;
     // int height;
     // int width;
@@ -64,8 +63,6 @@ char **ft_strdup_two(char **s1);
 
 
 char	*get_next_line_mod(int fd);
-
-
 
 
 void    free_info(t_info **info);

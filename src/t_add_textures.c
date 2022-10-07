@@ -18,20 +18,22 @@ int word_add_R(t_info *o, char **s_str)
 
 int word_add_NO(t_info *o, char **s_str)
 {
-    int i;
-
-    i = -1;
-    while (s_str[++i])
-        ;
-    if (i != 2)
-        return (ft_error("bad argument.\n"));
+    char *tmp;
     int	x;
     int	y;
-    x = 0;
-    y = 0;
-    // o->NO = mlx_png_file_to_image(o->mlx,"./textures/wall.png", &x, &y);
-    o->NO = mlx_xpm_file_to_image(o->mlx, "./textures/11.xpm", &x, &i);
-    // o->NO = mlx_xpm_file_to_image(o->mlx, "textures/wall.xpm", &x, &y);
+
+    y = -1;
+    while (s_str[++y])
+        ;
+    if (y != 2)
+        return (ft_error("bad argument.\n"));
+    x = TEX_W;
+    y = TEX_H;
+    tmp = (char *)o->NO;
+    // if (-1 == open(tmp, O_))
+    //     ft_error("no textures");
+    o->NO = mlx_xpm_file_to_image(o->mlx, tmp, &x, &y);
+    free(tmp);
     return (0);
 }
 
