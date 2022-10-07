@@ -27,14 +27,8 @@ int word_add_NO(t_info *o, char **s_str)
         ;
     if (y != 2)
         return (ft_error("bad argument.\n"));
-    x = TEX_W;
-    y = TEX_H;
-    tmp = (char *)o->NO;
-    // if (-1 == open(tmp, O_))
-    //     ft_error("no textures");
-    o->NO = mlx_xpm_file_to_image(o->mlx, tmp, &x, &y);
-    free(tmp);
-    return (0);
+    o->NO = mlx_xpm_file_to_image(o->mlx, "textures/bluestone.xpm", &x, &y);
+    return (0); 
 }
 
 int word_add_SO(t_info *o, char **s_str)

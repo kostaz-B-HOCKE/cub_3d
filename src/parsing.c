@@ -28,7 +28,6 @@ int     association_str(char **s_str)
     color = color + ft_atoi(s_str[2]) * 255 * 255;
     return (color);
 }
-
 // int chek_input_values(t_info *info, int i1)
 // {
 //     int i;

@@ -18,10 +18,36 @@
 # include	<stdlib.h>
 # include	<stdio.h>
 # include	<fcntl.h>
+# include   <math.h>
 # include	"../mlx/mlx.h"
 
 # define TEX_W 64
 # define TEX_H 64
+
+
+typedef struct s_cast
+{
+    double  posX;//позиция игрока
+    double  posY;
+	double  planeX;//плоскость камеры
+    double  planeY;
+    double  dirX;//изначальное направление взгляда
+    double  dirY;
+    double  camX;
+    double  rayX;//направление луча
+    double  rayY;//вычисляется как сумма направления взгляда игрока и плоскости камеры
+    int     wx;
+    int     wy;
+    int     mapX;//текущая клетка карты, 
+    int     mapY;//в которой находится луч
+    double  sideDistX;//изначально это расстояние, которое луч должен пройти от начальной позиции до первой стороны x и первой стороны y. 
+    double  sideDistY;//Позже в коде они будут увеличиваться по мере выполнения шагов.
+    double  deltaDistX;//расстояние, которое должен пройти луч, 
+    double  deltaDistY;//чтобы пройти от 1 стороны x(y) до следующей стороны x(y)
+    double  wallDist;//будет использоваться для вычисления длины луча
+    int     stepX;//шаг
+    int     stepY;
+}t_cast;
 
 typedef struct s_info
 {
@@ -45,6 +71,11 @@ typedef struct s_info
     void    *EA;
     int     F;
     int     C;
+
+
+    int     textureX;
+    int     textureY;
+    t_cast  cast;
 }       t_info;
 
 
