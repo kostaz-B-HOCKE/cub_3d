@@ -15,6 +15,6 @@ void    init_info(t_info *new)
     new->x = 0;
     new->y = 0;
     new->fd = 0;
-    new->R_width = 480;
-    new->R_height = 840;
+    new->R_width = WIN_W;
+    new->R_height = WIN_H;
 }

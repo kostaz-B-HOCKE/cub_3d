@@ -10,7 +10,7 @@ int check_digit_arr(char **argv)
     {
         j = -1;
         while (argv[i][++j])
-            if (!ft_isdigit(argv[i][j]) && argv[i][j] != 'S' && argv[i][j] != 'N' && argv[i][j] != ' ')  //добавить знаки
+            if (!ft_isdigit(argv[i][j]) && argv[i][j] != 'S' && argv[i][j] != 'N' && argv[i][j] != ' ' && argv[i][j] != 'W' && argv[i][j] != 'E')  //добавить знаки
             {
                 printf("c:%c\n", argv[i][j]);
                 return (ft_error("bad argument.\n"));
@@ -92,14 +92,21 @@ void    construct_str(char *filename, t_info *o)
     o->s_str[++i] = 0;
 }
 
+int start_sim(char c)
+{
+    if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'W' || c == 'E')
+        return (1);
+    return (0);
+}
+
 void chek_zero(t_info *o)
 {
-    if (!(o->s_str[o->y][(o->x + 1)] && (o->s_str[o->y][(o->x + 1)] == '0' || o->s_str[o->y][(o->x + 1)] == 'N' || \
-    o->s_str[o->y][(o->x + 1)] == '1')) || !(o->s_str[o->y][(o->x - 1)] && (o->s_str[o->y][(o->x - 1)] == '0' || \
-    o->s_str[o->y][(o->x - 1)] == 'N' || o->s_str[o->y][(o->x - 1)] == '1')) || !(o->s_str[o->y + 1][o->x] && \
-    (o->s_str[o->y + 1][o->x] == '0' || o->s_str[o->y + 1][(o->x)] == 'N' || o->s_str[o->y + 1][(o->x)] == '1')) || \
-    !(o->s_str[o->y - 1][(o->x)] && (o->s_str[o->y - 1][(o->x)] == '0' || o->s_str[o->y - 1][(o->x)] == 'N' || o->s_str[o->y - 1][(o->x)] == '1')))
-        ft_error("bad mapw");                   
+
+    if (!(o->s_str[o->y][(o->x + 1)] && start_sim(o->s_str[o->y][(o->x + 1)])) || 
+    !(o->s_str[o->y][(o->x - 1)] && start_sim(o->s_str[o->y][(o->x - 1)])) || 
+    !(o->s_str[o->y + 1][o->x] && start_sim(o->s_str[o->y + 1][o->x])) ||
+    !(o->s_str[o->y - 1][(o->x)] && start_sim(o->s_str[o->y - 1][(o->x)])))
+        ft_error("bad mapw");                  
 }
 
 int cheak_plaer(t_info *o)
@@ -114,15 +121,16 @@ int cheak_plaer(t_info *o)
     {
         j = -1;
         while (o->s_str[i][++j])
-            if (o->s_str[i][j] == 'N')
+            if (o->s_str[i][j] == 'N' || o->s_str[i][j] == 'W' || o->s_str[i][j] == 'E' || o->s_str[i][j] == 'S')
             {
                 flag++;
                 o->y = i;
                 o->x = j;
             }
     }
+    // printf("X >> %d Y >> %d\n", o->x, o->y);
     if (flag != 1)
-        return (ft_error("bad argument.\n"));
+        return (ft_error("bad argument..\n"));
     return (0);
 }
 
@@ -136,7 +144,7 @@ void    closed_walls(t_info *o)
     {
         o->x = -1;
         while (o->s_str[o->y][++(o->x)])
-            if (o->s_str[o->y][(o->x)] == '0' || o->s_str[o->y][(o->x)] == 'N')
+            if (o->s_str[o->y][(o->x)] == '0' || o->s_str[o->y][(o->x)] == 'N' || o->s_str[o->y][(o->x)] == 'W' || o->s_str[o->y][(o->x)] == 'E' || o->s_str[o->y][(o->x)] == 'S')
                 chek_zero(o);
     }
     check_digit_arr(o->s_str);
@@ -146,19 +154,16 @@ void    closed_walls(t_info *o)
 void    construct_argv(char *filename, t_info *o)
 {
     int ch_len;
-    int len;
+    // int len;
     char *lane;
     int fd;
-    int count;
+    // int count;
 
-    len = 0;
-    count = 0;
+    // len = 0;
+    // count = 0;
     construct_str(filename, o);
     cheak_first_word(o);
     closed_walls(o);
-
-    o->x = len;
-    o->y = count;
 }
 
 int parsing(int argc, char **argv, t_info *o)

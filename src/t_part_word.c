@@ -38,6 +38,7 @@ int word_add_C(t_info *o, char **s_str)
 
 int pars_wordd(t_info *o, char **s_str)
 {
+    // printf(">>> %s\n", s_str[0]);
     if (!ft_strcmp(s_str[0], "R"))
         return (word_add_R(o, s_str));
     if (!ft_strcmp(s_str[0], "NO"))
@@ -91,4 +92,5 @@ void    cheak_first_word(t_info *o)
             cutting_first_argv(o);
         ft_free_darr(s_split);
     }
+    // printf("S_STR %s\n", o->s_str[0]);
 }

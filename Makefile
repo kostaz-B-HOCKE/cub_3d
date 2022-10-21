@@ -1,53 +1,40 @@
-NAME		= cub3d
-SRCS_DIR	= src/
-OBJS_DIR	= obj/
-INCS_DIR	= include
-SRCS_F		= main.c init_info.c parsing.c utilus.c get_next_line_mod.c t_part_word.c t_add_textures.c func_free.c
+NAME = cub3d
 
-SRCS		= $(addprefix $(SRCS_DIR), $(SRCS_F))
-OBJS_F		= $(patsubst %.c, %.o, $(SRCS_F))
-DEPS_F		= $(patsubst %.c, %.d, $(SRCS_F))
-OBJS		= $(addprefix $(OBJS_DIR), $(OBJS_F))
-DEPS		= $(addprefix $(OBJS_DIR), $(DEPS_F))
+SRC = 	src/func_free.c src/get_next_line_mod.c\
+		src/init_info.c src/main.c src/parsing.c src/rays.c\
+		src/t_add_textures.c src/t_part_word.c src/utilus.c\
+		src/key.c src/action.c
 
-CC			= cc
-# CFLAGS		= 
-CFLAGS		= -g -fsanitize=address
-# CFLAGS		= -g -fsanitize=address
-#CFLAGS		= -Wall -Wextra -Werror -MMD
-LFLAGS		= -Llibft -lft
-LIB			= libft.a
-LIB_DIR		= libft/
+HEADER = include/cubd.h
 
-all: $(NAME)
+LIBFT = libft/libft.a
 
-$(OBJS_DIR)%.o : $(SRCS_DIR)%.c
-		@$(CC) $(CFLAGS) -I$(INCS_DIR) -c $< -o $@
-#.c.o:
-#			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+OBJS = $(SRC:.c=.o)
 
-$(OBJS_DIR) :
-		mkdir -p $@
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-$(NAME):  $(OBJS_DIR) $(OBJS) $(LIB_DIR)$(LIB)
-		@$(CC) $(CFLAGS) $(OBJS) $(LFLAGS) -o $(NAME) -Lmlx -lmlx  -framework OPENGL -framework Appkit -lm $
+all		:	$(NAME)
 
+$(NAME)	:	$(OBJS) $(LIBFT) 
+			@${MAKE} -C libft
+			$(CC) $(FLAGS) $(MLX_FLAGS) $^ -o $@
 
-$(LIB_DIR)$(LIB) : ;
-		make -C $(LIB_DIR)
+%.o		:	%.c $(HEADER) Makefile
+			$(CC) $(FLAGS) -c $< -o $@ 
 
-clean :
-	rm -rf $(OBJS_DIR)
-	make clean -C $(LIB_DIR)
+$(LIBFT) :  libft/libft.h libft/*.c libft/Makefile
 
-fclean : clean
-	rm -f $(NAME)
-	make fclean -C $(LIB_DIR)
+clean	:	
+			rm -rf $(OBJS)
+			@${MAKE} -C libft clean
 
-re: fclean all
+fclean	:	clean
+			rm -rf $(NAME)
+			@${MAKE} -C libft fclean
 
-.PHONY:
-		all clean fclean re bonus
+re		:	fclean all
 
--include $(DEPS) $(DEPS_B)
+.PHONY	:	all clean fclean re
 
