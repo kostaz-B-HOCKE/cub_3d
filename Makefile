@@ -3,7 +3,7 @@ NAME = cub3d
 SRC = 	src/func_free.c src/get_next_line_mod.c\
 		src/init_info.c src/main.c src/parsing.c src/rays.c\
 		src/t_add_textures.c src/t_part_word.c src/utilus.c\
-		src/key.c src/action.c
+		src/key.c src/action.c src/parsing_bonus.c
 
 HEADER = include/cubd.h
 

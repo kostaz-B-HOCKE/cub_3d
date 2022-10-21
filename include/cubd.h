@@ -124,6 +124,10 @@ void    init_info(t_info *new);
 
 //parsing.c
 int parsing(int argc, char **argv, t_info *info);
+void	chek_zero(t_info *o);
+int check_digit_arr(char **argv);
+int association_str(char **s_str);
+void	construct_str(char *filename, t_info *o);
 
 // utilus
 int   ft_error(char *str);
@@ -138,7 +142,6 @@ char	*get_next_line_mod(int fd);
 
 void    free_info(t_info **info);
 int     association_str(char **s_str);
-
 
 // int wall_inspection(t_info *info);
 void    cheak_first_word(t_info *o);
