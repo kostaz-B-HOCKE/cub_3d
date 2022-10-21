@@ -27,6 +27,16 @@ int	cheak_plaer(t_info	*o)
 	return (0);
 }
 
+int	association_str(char **s_str)
+{
+	int	color;
+
+	color = ft_atoi(s_str[0]);
+	color = color + ft_atoi(s_str[1]) * 255;
+	color = color + ft_atoi(s_str[2]) * 255 * 255;
+	return (color);
+}
+
 void	closed_walls(t_info *o)
 {
 	int	i;
@@ -37,8 +47,9 @@ void	closed_walls(t_info *o)
 	{
 		o->x = -1;
 		while (o->s_str[o->y][++(o->x)])
-			if (o->s_str[o->y][(o->x)] == '0' || o->s_str[o->y][(o->x)] == 'N' || o->s_str[o->y][(o->x)] == 'W' || \
-				o->s_str[o->y][(o->x)] == 'E' || o->s_str[o->y][(o->x)] == 'S')
+			if (o->s_str[o->y][(o->x)] == '0' || \
+			o->s_str[o->y][(o->x)] == 'N' || o->s_str[o->y][(o->x)] == 'W' || \
+			o->s_str[o->y][(o->x)] == 'E' || o->s_str[o->y][(o->x)] == 'S')
 				chek_zero(o);
 	}
 	check_digit_arr(o->s_str);

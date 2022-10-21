@@ -16,7 +16,7 @@ int	word_add_R(t_info *o, char **s_str)
 	return (0);
 }
 
-int word_add_NO(t_info *o, char **s_str)
+int	word_add_NO(t_info *o, char **s_str)
 {
 	int	x;
 	int	y;
@@ -100,13 +100,8 @@ static void	ft_import_imgxpm(t_info *o, int *texture, char *path, t_img *img)
 	int	x;
 
 	img->img = mlx_xpm_file_to_image(o->mlx, path, &img->img_w, &img->img_h);
-	// printf("\n\nPATH %s\n\n", path);
-	// if (img->img == NULL)
-	// 	ft_err_exit("xpm file error");
 	img->data = (int *)mlx_get_data_addr(img->img, &img->bpp, \
 										&img->len, &img->endian);
-	// printf("LEN >>> %d BPP >>>> %d\n", img->len, img->bpp);
-	// sleep(10);
 	y = 0;
 	while (y < img->img_h)
 	{

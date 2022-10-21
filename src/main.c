@@ -1,27 +1,5 @@
 #include "../include/cubd.h"
 
-int	print_background(t_info *o)
-{
-	int	i;
-	int	j;
-
-	j = -1;
-	while (++j < (o->R_width / 2))
-	{
-		i = -1;
-		while (++i < o->R_height)
-			mlx_pixel_put(o->mlx, o->wind, i, j, o->F);
-	}
-	j--;
-	while (++j < o->R_width)
-	{
-		i = -1;
-		while (++i < o->R_height)
-			mlx_pixel_put(o->mlx, o->wind, i, j, o->C);
-	}
-	return (0);
-}
-
 void	ft_fill_floor_and_ceiling(t_info *o)
 {
 	int	y;
@@ -76,7 +54,7 @@ int	main(int argc, char **argv)
 	parsing(argc, argv, &o);
 	init_data(&o);
 	o.mlx = mlx_init();
-	o.wind = mlx_new_window(o.mlx,WIN_W, WIN_H, "Cub 3D");
+	o.wind = mlx_new_window(o.mlx, WIN_W, WIN_H, "Cub 3D");
 	get_data_addr(&o);
 	ft_import_textures(&o);
 	ft_game(&o);
