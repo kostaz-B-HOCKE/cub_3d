@@ -16,7 +16,6 @@ int word_add_R(t_info *o, char **s_str)
     return (0);
 }
 
-  
 int word_add_NO(t_info *o, char **s_str)
 {
     int	x;

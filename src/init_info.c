@@ -18,3 +18,4 @@ void    init_info(t_info *new)
     new->R_width = WIN_W;
     new->R_height = WIN_H;
 }
+
