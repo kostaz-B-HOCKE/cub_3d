@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_part_word.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/21 19:23:33 by eabradol          #+#    #+#             */
+/*   Updated: 2022/10/21 19:23:35 by eabradol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cubd.h"
 
-int	word_add_F(t_info *o, char **s_str)
+int	word_add_f(t_info *o, char **s_str)
 {
 	int		i;
 	char	**str_split;
@@ -19,7 +31,7 @@ int	word_add_F(t_info *o, char **s_str)
 	return (0);
 }
 
-int	word_add_C(t_info *o, char **s_str)
+int	word_add_c(t_info *o, char **s_str)
 {
 	int		i;
 	char	**str_split;
@@ -41,19 +53,19 @@ int	word_add_C(t_info *o, char **s_str)
 int	pars_wordd(t_info *o, char **s_str)
 {
 	if (!ft_strcmp(s_str[0], "R"))
-		return (word_add_R(o, s_str));
+		return (word_add_r(o, s_str));
 	if (!ft_strcmp(s_str[0], "NO"))
-		return (word_add_NO(o, s_str));
+		return (word_add_no(o, s_str));
 	if (!ft_strcmp(s_str[0], "SO"))
-		return (word_add_SO(o, s_str));
+		return (word_add_so(o, s_str));
 	if (!ft_strcmp(s_str[0], "WE"))
-		return (word_add_WE(o, s_str));
+		return (word_add_we(o, s_str));
 	if (!ft_strcmp(s_str[0], "EA"))
-		return (word_add_EA(o, s_str));
+		return (word_add_ea(o, s_str));
 	if (!ft_strcmp(s_str[0], "F"))
-		return (word_add_F(o, s_str));
+		return (word_add_f(o, s_str));
 	if (!ft_strcmp(s_str[0], "C"))
-		return (word_add_C(o, s_str));
+		return (word_add_c(o, s_str));
 	return (1);
 }
 

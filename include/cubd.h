@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   cubd.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjada <rjada@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:41:01 by rjada             #+#    #+#             */
-/*   Updated: 2022/05/30 19:18:04 by rjada            ###   ########.fr       */
+/*   Updated: 2022/10/21 19:26:10 by eabradol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ typedef struct s_info
 // init
 void    init_info(t_info *new);
 
+void	ft_import_textures(t_info *o);
+static void	ft_import_imgxpm(t_info *o, int *texture, char *path, t_img *img);
+
 //parsing.c
 int parsing(int argc, char **argv, t_info *info);
 void	chek_zero(t_info *o);
@@ -146,11 +149,11 @@ int     association_str(char **s_str);
 // int wall_inspection(t_info *info);
 void    cheak_first_word(t_info *o);
 
-int word_add_R(t_info *o, char **s_str);
-int word_add_NO(t_info *o, char **s_str);
-int word_add_EA(t_info *o, char **s_str);
-int word_add_SO(t_info *o, char **s_str);
-int word_add_WE(t_info *o, char **s_str);
+int word_add_r(t_info *o, char **s_str);
+int word_add_no(t_info *o, char **s_str);
+int word_add_ea(t_info *o, char **s_str);
+int word_add_so(t_info *o, char **s_str);
+int word_add_we(t_info *o, char **s_str);
 
 void	ft_import_textures(t_info *o);
 
