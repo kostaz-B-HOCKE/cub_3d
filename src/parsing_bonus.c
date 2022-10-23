@@ -6,7 +6,7 @@
 /*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:24:00 by eabradol          #+#    #+#             */
-/*   Updated: 2022/10/21 19:25:58 by eabradol         ###   ########.fr       */
+/*   Updated: 2022/10/23 17:29:00 by eabradol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,24 @@ int	check_digit_arr(char **argv)
 	return (0);
 }
 
+void	construct_str_norm(char *filename, t_info *o, char **s_str)
+{
+	int		fd;
+	char	*lane;
+	int		i;
+
+	i = -1;
+	fd = open(filename, O_RDONLY);
+	lane = get_next_line(fd);
+	while (lane)
+	{
+		if (ft_strlen(lane))
+			o->s_str[++i] = lane;
+		lane = get_next_line(fd);
+	}
+	o->s_str[++i] = 0;
+}
+
 void	construct_str(char *filename, t_info *o)
 {
 	char	*lane;
@@ -45,21 +63,18 @@ void	construct_str(char *filename, t_info *o)
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
-	while ((lane = get_next_line(fd)))
+	lane = get_next_line(fd);
+	while (lane)
 	{
 		if (ft_strlen(lane))
 			i++;
 		free(lane);
+		lane = get_next_line(fd);
 	}
 	o->s_str = (char **)malloc(sizeof(char *) * (i + 1));
 	if (!o->s_str)
 		ft_error("malloc error\n");
-	i = -1;
-	fd = open(filename, O_RDONLY);
-	while ((lane = get_next_line(fd)))
-		if (ft_strlen(lane))
-			o->s_str[++i] = lane;
-	o->s_str[++i] = 0;
+	construct_str_norm(filename, o, s_str);
 }
 
 int	start_sim(char c)
