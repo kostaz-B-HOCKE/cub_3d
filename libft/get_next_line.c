@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  <>                                        +#+  +:+       +#+        */
+/*   By: slaree <slaree@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 14:01:02 by                   #+#    #+#             */
-/*   Updated: 2021/11/21 13:53:49 by                  ###   ########.fr       */
+/*   Updated: 2022/10/24 17:38:51 by slaree           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 char	*ftt_strjoin(char *s1, char *s2)
 {
-    size_t	i;
-    size_t	n;
-    char	*str;
-    size_t	len;
+	size_t	i;
+	size_t	n;
+	char	*str;
+	size_t	len;
 
-    i = -1;
-    n = -1;
-    if (!s1 || !s2)
-        return (NULL);
-    len = ft_strlen(s1) + ft_strlen(s2);
-    str = malloc(sizeof(char) * len + 1);
-    if (!str)
-        return (NULL);
-    while (s1[++i])
-        str[i] = s1[i];
-    while (s2[++n])
-        str[i + n] = s2[n];
-    str[i + n] = '\0';
-    free(s1);
-    return (str);
+	i = -1;
+	n = -1;
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (NULL);
+	while (s1[++i])
+		str[i] = s1[i];
+	while (s2[++n])
+		str[i + n] = s2[n];
+	str[i + n] = '\0';
+	free(s1);
+	return (str);
 }
 
 int	kot(int fd, char *buf, char **thc)
@@ -100,19 +100,3 @@ char	*get_next_line(int fd)
 	b = kot(fd, buf, &thc);
 	return (kot2(&thc, b));
 }
-
-
-// int main()
-// {
-// 	int fd;
-// 	char *lene;
-
-// 	fd = open("text.txt", O_RDONLY);
-// 	//	while ((lene = get_next_line(fd)))
-// 	//		printf("%s", lene);
-// 	lene = get_next_line(fd);
-// 	printf("%s", lene);
-// 	lene = get_next_line(fd);
-// 	printf("%s", lene);
-// }
-

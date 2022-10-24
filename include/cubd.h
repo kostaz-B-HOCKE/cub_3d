@@ -104,68 +104,69 @@ typedef struct s_info
 	int		**textures;
 	int		texture_x;
 	int		texture_y;
+	double	texture_pos;
 	t_cast	cast;
 	t_img	img;
 	t_key	k;
 }t_info;
 
-static	void ft_import_imgxpm(t_info *o, int *texture, char *path, t_img *img);
+static void	ft_import_imgxpm(t_info *o, int *texture, char *path, t_img *img);
 
 // init
-void	init_info(t_info *new);
+void		init_info(t_info *new);
 
-void	ft_import_textures(t_info *o);
-int		parsing(int argc, char **argv, t_info *info);
-void	chek_zero(t_info *o);
-int		check_digit_arr(char **argv);
-int		association_str(char **s_str);
-void	construct_str(char *filename, t_info *o);
+void		ft_import_textures(t_info *o);
+int			parsing(int argc, char **argv, t_info *info);
+void		chek_zero(t_info *o);
+int			check_digit_arr(char **argv);
+int			association_str(char **s_str);
+void		construct_str(char *filename, t_info *o);
 
 // utilus
-int		ft_error(char *str);
-int		check_digit_str(char *str);
-void	ft_free_darr(char **argv);
-void	ft_print_darr(char **argv, int fd);
-char	**ft_strdup_two(char **s1);
+int			ft_error(char *str);
+int			check_digit_str(char *str);
+void		ft_free_darr(char **argv);
+void		ft_print_darr(char **argv, int fd);
+char		**ft_strdup_two(char **s1);
 
-char	*get_next_line_mod(int fd);
+char		*get_next_line_mod(int fd);
 
-void	free_info(t_info **info);
-int		association_str(char **s_str);
+void		free_info(t_info **info);
+int			association_str(char **s_str);
 
-void	cheak_first_word(t_info *o);
+void		cheak_first_word(t_info *o);
 
-int		word_add_r(t_info *o, char **s_str);
-int		word_add_no(t_info *o, char **s_str);
-int		word_add_ea(t_info *o, char **s_str);
-int		word_add_so(t_info *o, char **s_str);
-int		word_add_we(t_info *o, char **s_str);
+int			word_add_r(t_info *o, char **s_str);
+int			word_add_no(t_info *o, char **s_str);
+int			word_add_ea(t_info *o, char **s_str);
+int			word_add_so(t_info *o, char **s_str);
+int			word_add_we(t_info *o, char **s_str);
 
-void	ft_import_textures(t_info *o);
+void		ft_import_textures(t_info *o);
 
 //rays.c
 // int	alloc_texture_arr(t_info *o);
 
-void	init_data(t_info *o);
-void	get_the_angle(t_info *o);
-void	calc_step_n_sidedist(t_info *o);
-int		dd_analyzer(t_info *o);
-int		calc_wall_size(t_info *o, int side, int *line_height, int *start);
-double	ft_choose_pixel(t_info *o, int side, int line_height, double *texture_pos, int start);
-void	wall_casting(t_info *o);
-void	ft_render(t_info *o);
+void		init_data(t_info *o);
+void		get_the_angle(t_info *o);
+void		calc_step_n_sidedist(t_info *o);
+int			dd_analyzer(t_info *o);
+int			calc_wall_size(t_info *o, int side, int *line_height, int *start);
+double		ft_choose_pixel(t_info *o, int side, int line_height, int start);
+void		wall_casting(t_info *o);
+void		ft_render(t_info *o);
 
 //key.c
-int		ft_key_press(int key, t_info *o);
-int		ft_key_release(int key, t_info *o);
-void	ft_player_rotate_r(t_info *o);
-void	ft_player_rotate_l(t_info *o);
-void	ft_key_action(t_info *o);
+int			ft_key_press(int key, t_info *o);
+int			ft_key_release(int key, t_info *o);
+void		ft_player_rotate_r(t_info *o);
+void		ft_player_rotate_l(t_info *o);
+void		ft_key_action(t_info *o);
 
 //action.c
-void	ft_player_forward(t_info *o);
-void	ft_player_backward(t_info *o);
-void	ft_player_left(t_info *o);
-void	ft_player_right(t_info *o);
+void		ft_player_forward(t_info *o);
+void		ft_player_backward(t_info *o);
+void		ft_player_left(t_info *o);
+void		ft_player_right(t_info *o);
 
 #endif

@@ -12,19 +12,6 @@
 
 #include "../include/cubd.h"
 
-	// void	ft_init_data(t_glb *glb)
-	// {
-	// 	glb->ctrl.key_esc = 0;
-	// 	glb->ctrl.key_up = 0;
-	// 	glb->ctrl.key_down = 0;
-	// 	glb->ctrl.key_left = 0;
-	// 	glb->ctrl.key_right = 0;
-	// 	glb->speed_rotate = 0.04;
-	// 	glb->speed_move = 0.04;
-	// glb->player_y = (double)j + 0.5;
-	// glb->player_x = (double)i + 0.5;
-	// double time = 0; //time of current frame
-	// double oldTime = 0; //time of previous frame
 void	init_pos(t_info *o, char direct, int i, int j)
 {
 	o->cast.poxy = (double)j;
@@ -87,8 +74,6 @@ void	init_data(t_info *o)
 	get_pos(o, o->s_str);
 }
 
-//эта ф-ция вызывается в цикле в get_direction()
-//x-coordinate in camera space (переводим из 0..640 в -1..1)
 void	get_the_angle(t_info *o)
 {
 	o->cast.cam_x = 2 * o->cast.wx / (double)WIN_W - 1;

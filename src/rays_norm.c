@@ -49,7 +49,7 @@ static int	ft_choose_texture(t_info *o, int side)
 	return (tex);
 }
 
-double 	ft_choose_pixel(t_info *o, int side, int line_height, double *texture_pos, int start)
+double	ft_choose_pixel(t_info *o, int side, int line_height, int start)
 {
 	double	wall_x;
 	double	step;
@@ -65,20 +65,20 @@ double 	ft_choose_pixel(t_info *o, int side, int line_height, double *texture_po
 	if (side == 1 && o->cast.ray_y < 0)
 		o->texture_x = TEX_W - o->texture_x - 1;
 	step = 1.0 * TEX_H / line_height;
-	*texture_pos = (start - o->r_height / 2 + line_height / 2) * step;
+	o->texture_pos = (start - o->r_height / 2 + line_height / 2) * step;
 	o->cast.wy = start;
 	return (step);
 }
 
-static	void	ft_pixels_screen_buf(t_info *o, int end, double *texture_pos, double step, int side)
+static	void	ft_pixels_screen_buf(t_info *o, int end, double step, int side)
 {
 	int	color;
 	int	tex;
 
 	while (o->cast.wy < end)
 	{
-		o->texture_y = (int)*texture_pos & (TEX_H - 1);
-		*texture_pos += step;
+		o->texture_y = (int)o->texture_pos & (TEX_H - 1);
+		o->texture_pos += step;
 		tex = ft_choose_texture(o, side);
 		color = o->textures[tex][TEX_H * o->texture_y + \
 			o->texture_x];
@@ -93,7 +93,6 @@ void	wall_casting(t_info *o)
 {
 	int		side;
 	int		line_height;
-	double	texture_pos;
 	int		start;
 	int		end;
 	double	step;
@@ -105,8 +104,8 @@ void	wall_casting(t_info *o)
 		calc_step_n_sidedist(o);
 		side = dd_analyzer(o);
 		end = calc_wall_size(o, side, &line_height, &start);
-		step = ft_choose_pixel(o, side, line_height, &texture_pos, start);
-		ft_pixels_screen_buf(o, end, &texture_pos, step, side);
+		step = ft_choose_pixel(o, side, line_height, start);
+		ft_pixels_screen_buf(o, end, step, side);
 		o->cast.wx++;
 	}
 }

@@ -73,5 +73,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(o.mlx, &ft_game, &o);
 	mlx_hook(o.wind, PRESS, 0, &ft_key_press, &o);
 	mlx_hook(o.wind, RELEASE, 0, &ft_key_release, &o);
+	mlx_hook(o.wind, REDCROSS, 0, ft_close_window, &o);
 	mlx_loop(o.mlx);
+	return (0);
 }
