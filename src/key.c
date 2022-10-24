@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 14:33:49 by eabradol          #+#    #+#             */
+/*   Updated: 2022/10/24 15:17:56 by eabradol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cubd.h"
 
 int	ft_key_press(int key, t_info *o)
@@ -5,17 +17,14 @@ int	ft_key_press(int key, t_info *o)
 	if (key == ESC)
 		exit(0);
 	else if (key == UP)
-    {
-        printf("UP\n");
-        o->k.kup = 1;
-    }	
+		o->k.kup = 1;
 	else if (key == LEFT)
 		o->k.kleft = 1;
 	else if (key == DOWN)
 		o->k.kdown = 1;
 	else if (key == RIGHT)
 		o->k.kright = 1;
-	else if (key ==ARROW_RIGHT)
+	else if (key == ARROW_RIGHT)
 		o->k.karr_right = 1;
 	else if (key == ARROW_LEFT)
 		o->k.karr_left = 1;
@@ -34,7 +43,7 @@ int	ft_key_release(int key, t_info *o)
 		o->k.kdown = 0;
 	else if (key == RIGHT)
 		o->k.kright = 0;
-	else if (key ==ARROW_RIGHT)
+	else if (key == ARROW_RIGHT)
 		o->k.karr_right = 0;
 	else if (key == ARROW_LEFT)
 		o->k.karr_left = 0;
@@ -78,7 +87,7 @@ void	ft_player_rotate_l(t_info *o)
 void	ft_key_action(t_info *o)
 {
 	if (o->k.kup)
-        ft_player_forward(o);	
+		ft_player_forward(o);
 	if (o->k.kdown)
 		ft_player_backward(o);
 	if (o->k.kleft)

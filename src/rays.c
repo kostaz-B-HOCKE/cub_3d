@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rays.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 14:36:07 by eabradol          #+#    #+#             */
+/*   Updated: 2022/10/24 14:41:36 by eabradol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cubd.h"
 
 	// void	ft_init_data(t_glb *glb)
@@ -13,12 +25,10 @@
 	// glb->player_x = (double)i + 0.5;
 	// double time = 0; //time of current frame
 	// double oldTime = 0; //time of previous frame
-
 void	init_pos(t_info *o, char direct, int i, int j)
 {
-	o->cast.posY = (double)j;//+0.5
-	o->cast.posX = (double)i;//+0.5
-	// printf("PLAYER X %f PLAYER Y %f\n",o->cast.posX, o->cast.posY);
+	o->cast.posY = (double)j;
+	o->cast.posX = (double)i;
 	if (direct == 'E')
 	{
 		o->cast.planeX = 0.66;
@@ -40,107 +50,86 @@ void	init_pos(t_info *o, char direct, int i, int j)
 		o->cast.dirX = 0;
 		o->cast.dirY = -1;
 	}
-	// printf("CamPlaneX >> %f CamPlaneY >> %f\n", o->cast.planeX, o->cast.planeY);
-	// printf("PLAYERDirX   >> %f PLAYERDirY   >> %f\n",  o->cast.dirX, o->cast.dirY);
 }
 
-void get_pos(t_info *o, char **str)
+void	get_pos(t_info *o, char **str)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
-	// printf("STRRRRR %s\n", str[0]);
 	i = -1;
 	while (str[++i])
 	{
-		// printf("STR %s\n", str[i]);
 		j = 0;
 		while (str[i][j])
+		{
+			if (str[i][j] == 'N' || str[i][j] == 'S' \
+				|| str[i][j] == 'W' || str[i][j] == 'E')
 			{
-				if (str[i][j] == 'N' || str[i][j] == 'S'\
-					|| str[i][j] == 'W' || str[i][j] == 'E')
-					{
-						o->x = i;
-						o->y = j;
-						init_pos(o, str[i][j], i, j);
-					}
-					
+				o->x = i;
+				o->y = j;
+				init_pos(o, str[i][j], i, j);
+			}				
 				j++;
-			}
-			
+		}
 	}
-	// printf("X >> %d Y >> %d\n", o->x, o->y);
 }
 
-
-void init_data(t_info *o)
+void	init_data(t_info *o)
 {
-	t_cast cast;
+	t_cast	cast;
 
-	// cast.posX = 1 + 0.5;//(double)o->x; Позиция игрока на карте + 0,5 
-	// // printf("!!!!%d\n", o->x);
-	// cast.posY = 1 + 0.5;//(double)o->y; Позиция игрока на карте + 0,5
 	cast.planeX = 0;
-	cast.planeY = 0.66; //the 2d raycaster version of camera plane
+	cast.planeY = 0.66;
 	cast.dirX = -1;
-	cast.dirY = 0; //initial direction vector
+	cast.dirY = 0;
 	o->cast = cast;
 	get_pos(o, o->s_str);
 }
 
-void    get_the_angle(t_info *o)//эта ф-ция вызывается в цикле в get_direction()
-{   
-	//calculate ray position and direction
-	o->cast.camX = 2 * o->cast.wx / (double)WIN_W  - 1; //x-coordinate in camera space (переводим из 0..640 в -1..1)
-	// printf("%f\n", o->cast.camX);
-	o->cast.rayX = o->cast.dirX + o->cast.planeX * o->cast.camX;//(-1 + 0*(-1..1))
-	// printf("%f\n", o->cast.rayX);
-	o->cast.rayY = o->cast.dirY + o->cast.planeY * o->cast.camX;//0+0.66*(-1..1)
-	// printf("%f\n", o->cast.rayY);
+//эта ф-ция вызывается в цикле в get_direction()
+//x-coordinate in camera space (переводим из 0..640 в -1..1)
+void	get_the_angle(t_info *o)
+{
+	o->cast.camX = 2 * o->cast.wx / (double)WIN_W - 1;
+	o->cast.rayX = o->cast.dirX + o->cast.planeX * o->cast.camX;
+	o->cast.rayY = o->cast.dirY + o->cast.planeY * o->cast.camX;
 	o->cast.mapX = (int)o->cast.posX;
-	// printf("MApX %d\n", o->cast.mapX);
 	o->cast.mapY = (int)o->cast.posY;
-	// printf("MApY %d\n", o->cast.mapY);
 	o->cast.deltaDistX = fabs(1 / o->cast.rayX);
-	// printf("DeltaDistX  %f\n", o->cast.deltaDistX);
 	o->cast.deltaDistY = fabs(1 / o->cast.rayY);
-	// printf("DeltaDistY  %f\n", o->cast.deltaDistY);
-	// sleep(5);
 }
 
-void	calc_step_n_sideDist(t_info *o)// вычисляем шаг и начальное значение sideDist
+void	calc_step_n_sideDist(t_info	*o)
 {
 	if (o->cast.rayX < 0)
 	{
 		o->cast.stepX = -1;
 		o->cast.sideDistX = (o->cast.posX - o->cast.mapX) * o->cast.deltaDistX;
-		// printf("1 sideDistX  %f\n", o->cast.sideDistX );
 	}
 	else
 	{
 		o->cast.stepX = 1;
 		o->cast.sideDistX = (o->cast.mapX + 1.0 - o->cast.posX) * o->cast.deltaDistX;
-		// printf("2 sideDistX  %f\n", o->cast.sideDistX );
 	}
-	if  (o->cast.rayY < 0)
+	if (o->cast.rayY < 0)
 	{
 		o->cast.stepY = -1;
 		o->cast.sideDistY = (o->cast.posY - o->cast.mapY) * o->cast.deltaDistY;
-		// printf("3 sideDistY  %f\n", o->cast.sideDistY );
 	}
 	else
 	{
 		o->cast.stepY = 1;
 		o->cast.sideDistY = (o->cast.mapY + 1.0 - o->cast.posY) * o->cast.deltaDistY;
-		// printf("4 sideDistY  %f\n", o->cast.sideDistY );
 	}
-	// sleep(5);
 }
 
-int	dd_analyzer(t_info *o)//Digital Differential Analyzer
-/* Когда луч попадает в стену, цикл завершается, 
+//Digital Differential Analyzer
+/* Когда луч попадает в стену, цикл завершается,
 и переменная side показыввает сторону стены (сторона х или сторона у), куда ударил луч
 и координаты стены (mapX и mapY) */
+// printf("o->cast.mapX >> %d  o->cast.mapY%d",o->cast.mapX,o->cast.mapY);
+int	dd_analyzer(t_info *o)
 {
 	int	hit;
 	int	side;
@@ -148,35 +137,26 @@ int	dd_analyzer(t_info *o)//Digital Differential Analyzer
 	hit = 0;
 	while (hit == 0)
 	{
-		// printf("o->cast.mapX >> %d  o->cast.mapY%d",o->cast.mapX,o->cast.mapY);
 		if (o->cast.sideDistX < o->cast.sideDistY)
 		{
 			o->cast.sideDistX = o->cast.sideDistX + o->cast.deltaDistX;
-			// printf("1 sideDistX  %f\n", o->cast.sideDistX);
 			o->cast.mapX = o->cast.mapX + o->cast.stepX;
-			// printf("1 mapX  %d\n", o->cast.mapX);
 			side = 0;
 		}
 		else
 		{
 			o->cast.sideDistY = o->cast.sideDistY + o->cast.deltaDistY;
-			// printf("2 sideDistY  %f\n", o->cast.sideDistY);
 			o->cast.mapY = o->cast.mapY + o->cast.stepY;
 			side = 1;
-			// printf("2 mapY  %d SIDE %d\n", o->cast.mapY, side);
 		}
-		// printf("o->cast.mapX  %d o->cast.mapY  %d\n", o->cast.mapX, o->cast.mapY);
 		if (o->s_str[o->cast.mapX][o->cast.mapY] == '1')
 			hit = 1;
-		// printf("HIT %d\n", hit);
-		// sleep (5);
 	}
 	return (side);
 }
 
-/* После того, как DDA выполнено, мы должны рассчитать расстояние луча до стены, 
+/* После того, как DDA выполнено, мы должны рассчитать расстояние луча до стены,
 чтобы рассчитать, какой высоты стена должна быть нарисована 
-
 * для этого мы расчитываем значение переменной wallDist(это расстояние от точки,
   где луч пересекает стену до точки на плоскости камеры, в которой линия образует прямой угол 
   (во избежание эффекта "fisheye")
@@ -283,7 +263,7 @@ static void	ft_pixels_screen_buf(t_info *o, int end, double *texture_pos, double
 	}
 }
 
-void    wall_casting(t_info *o)
+void	wall_casting(t_info *o)
 {
 	int		side;
 	int		line_height;
@@ -326,7 +306,3 @@ void	ft_render(t_info *o)
 	}
 	mlx_put_image_to_window(o->mlx, o->wind, o->img.img, 0, 0);
 }
-
-
-
-  

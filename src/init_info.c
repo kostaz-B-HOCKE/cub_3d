@@ -1,22 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_info.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/24 14:32:57 by eabradol          #+#    #+#             */
+/*   Updated: 2022/10/24 14:33:30 by eabradol         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cubd.h"
 
-void    init_info(t_info *new)
+void	init_info(t_info *new)
 {
-    new->argv = NULL;
-    // new->check = NULL;
-    new->C = 0;
-    new->F = 0;
-    new->mlx = NULL;
-    new->s_str = NULL;
-    new->NO = NULL;
-    new->SO = NULL;
-    new->WE = NULL;
-    new->EA = NULL;
-    new->x = 0;
-    new->y = 0;
-    new->fd = 0;
-    new->R_width = WIN_W;
-    new->R_height = WIN_H;
+	new->argv = NULL;
+	new->C = 0;
+	new->F = 0;
+	new->mlx = NULL;
+	new->s_str = NULL;
+	new->NO = NULL;
+	new->SO = NULL;
+	new->WE = NULL;
+	new->EA = NULL;
+	new->x = 0;
+	new->y = 0;
+	new->fd = 0;
+	new->R_width = WIN_W;
+	new->R_height = WIN_H;
 }
 
 //не поместилось по норме
