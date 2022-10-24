@@ -6,7 +6,7 @@
 /*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:24:52 by eabradol          #+#    #+#             */
-/*   Updated: 2022/10/21 19:26:02 by eabradol         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:51:03 by eabradol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_fill_floor_and_ceiling(t_info *o)
 		x = 0;
 		while (x < WIN_W)
 		{
-			o->screen[y][x] = o->F;
-			o->screen[WIN_H - y - 1][x] = o->C;
+			o->screen[y][x] = o->fff;
+			o->screen[WIN_H - y - 1][x] = o->ccc;
 			x++;
 		}
 		y++;

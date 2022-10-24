@@ -6,7 +6,7 @@
 /*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 19:23:33 by eabradol          #+#    #+#             */
-/*   Updated: 2022/10/21 19:23:35 by eabradol         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:51:26 by eabradol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	word_add_f(t_info *o, char **s_str)
 	if (check_digit_str(str_split[0]) || check_digit_str(str_split[1]) || \
 		check_digit_str(str_split[2]))
 		return (ft_error("bad argument.\n"));
-	o->F = association_str(str_split);
+	o->fff = association_str(str_split);
 	ft_free_darr(str_split);
 	return (0);
 }
@@ -45,7 +45,7 @@ int	word_add_c(t_info *o, char **s_str)
 	if (check_digit_str(str_split[0]) || check_digit_str(str_split[1]) || \
 		check_digit_str(str_split[2]))
 		return (ft_error("bad argument.\n"));
-	o->C = association_str(str_split);
+	o->ccc = association_str(str_split);
 	ft_free_darr(str_split);
 	return (0);
 }

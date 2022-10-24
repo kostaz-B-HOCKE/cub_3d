@@ -6,7 +6,7 @@
 /*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:33:49 by eabradol          #+#    #+#             */
-/*   Updated: 2022/10/24 15:17:56 by eabradol         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:21:35 by eabradol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,36 @@ int	ft_key_release(int key, t_info *o)
 
 void	ft_player_rotate_r(t_info *o)
 {
-	double	old_planeX;
-	double	old_dirX;
+	double	old_plane_x;
+	double	old_dir_x;
 
-	old_dirX = o->cast.dirX;
-	old_planeX = o->cast.planeX;
-	o->cast.dirX = o->cast.dirX * cos(-0.04) - \
-					o->cast.dirY * sin(-0.04);
-	o->cast.dirY = old_dirX * sin(-0.04) + \
-					o->cast.dirY * cos(-0.04);
-	o->cast.planeX = o->cast.planeX * cos(-0.04) - \
-					o->cast.planeY * sin(-0.04);
-	o->cast.planeY = old_planeX * sin(-0.04) + \
-					o->cast.planeY * cos(-0.04);
+	old_dir_x = o->cast.dir_x;
+	old_plane_x = o->cast.plane_x;
+	o->cast.dir_x = o->cast.dir_x * cos(-0.04) - \
+					o->cast.dir_y * sin(-0.04);
+	o->cast.dir_y = old_dir_x * sin(-0.04) + \
+					o->cast.dir_y * cos(-0.04);
+	o->cast.plane_x = o->cast.plane_x * cos(-0.04) - \
+					o->cast.plane_y * sin(-0.04);
+	o->cast.plane_y = old_plane_x * sin(-0.04) + \
+					o->cast.plane_y * cos(-0.04);
 }
 
 void	ft_player_rotate_l(t_info *o)
 {
-	double	old_planeX;
-	double	old_dirX;
+	double	old_plane_x;
+	double	old_dir_x;
 
-	old_dirX = o->cast.dirX;
-	old_planeX = o->cast.planeX;
-	o->cast.dirX = o->cast.dirX * cos(0.04) - \
-					o->cast.dirY * sin(0.04);
-	o->cast.dirY = old_dirX * sin(0.04) + \
-					o->cast.dirY * cos(0.04);
-	o->cast.planeX = o->cast.planeX * cos(0.04) - \
-					o->cast.planeY * sin(0.04);
-	o->cast.planeY = old_planeX * sin(0.04) + \
-					o->cast.planeY * cos(0.04);
+	old_dir_x = o->cast.dir_x;
+	old_plane_x = o->cast.plane_x;
+	o->cast.dir_x = o->cast.dir_x * cos(0.04) - \
+					o->cast.dir_y * sin(0.04);
+	o->cast.dir_y = old_dir_x * sin(0.04) + \
+					o->cast.dir_y * cos(0.04);
+	o->cast.plane_x = o->cast.plane_x * cos(0.04) - \
+					o->cast.plane_y * sin(0.04);
+	o->cast.plane_y = old_plane_x * sin(0.04) + \
+					o->cast.plane_y * cos(0.04);
 }
 
 void	ft_key_action(t_info *o)

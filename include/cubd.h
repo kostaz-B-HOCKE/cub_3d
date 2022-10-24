@@ -6,7 +6,7 @@
 /*   By: eabradol <eabradol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 13:41:01 by rjada             #+#    #+#             */
-/*   Updated: 2022/10/24 14:48:02 by eabradol         ###   ########.fr       */
+/*   Updated: 2022/10/24 16:52:41 by eabradol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,26 @@ typedef struct s_img
 
 typedef struct s_cast
 {
-	double	posX;
-	double	posY;
-	double	planeX;
-	double	planeY;
-	double  dirX;
-	double  dirY;
-	double  camX;
-	double  rayX;//направление луча
-	double  rayY;//вычисляется как сумма направления взгляда игрока и плоскости камеры
-	int     wx;
-	int     wy;
-	int     mapX;//текущая клетка карты, 
-	int     mapY;//в которой находится луч
-	double  sideDistX;//изначально это расстояние, которое луч должен пройти от начальной позиции до первой стороны x и первой стороны y. 
-	double  sideDistY;//Позже в коде они будут увеличиваться по мере выполнения шагов.
-	double  deltaDistX;//расстояние, которое должен пройти луч, 
-	double  deltaDistY;//чтобы пройти от 1 стороны x(y) до следующей стороны x(y)
-	double  wallDist;//будет использоваться для вычисления длины луча
-	int     stepX;//шаг
-	int     stepY;
+	double	posx;
+	double	poxy;
+	double	plane_x;
+	double	plane_y;
+	double	dir_x;
+	double	dir_y;
+	double	cam_x;
+	double	ray_x;
+	double	ray_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	int		wx;
+	int		wy;
+	int		map_x;
+	int		map_y;
+	double	wall_dist;
+	int		step_x;
+	int		step_y;
 }t_cast;
 
 typedef struct s_info
@@ -96,27 +96,23 @@ typedef struct s_info
 	int		fd;
 	void	*wind;
 	void	*mlx;
-	int		R_width;
-	int		R_height;
-	void	*NO;
-	void	*SO;
-	void	*WE;
-	void	*EA;
-	int		F;
-	int		C;
+	int		r_width;
+	int		r_height;
+	int		fff;
+	int		ccc;
 	int		screen[WIN_H][WIN_W];
 	int		**textures;
-	int		textureX;
-	int		textureY;
+	int		texture_x;
+	int		texture_y;
 	t_cast	cast;
 	t_img	img;
 	t_key	k;
 }t_info;
 
+static	void ft_import_imgxpm(t_info *o, int *texture, char *path, t_img *img);
+
 // init
 void	init_info(t_info *new);
-
-static void ft_import_imgxpm(t_info *o, int *texture, char *path, t_img *img);
 
 void	ft_import_textures(t_info *o);
 int		parsing(int argc, char **argv, t_info *info);
@@ -152,7 +148,7 @@ void	ft_import_textures(t_info *o);
 
 void	init_data(t_info *o);
 void	get_the_angle(t_info *o);
-void	calc_step_n_sideDist(t_info *o);
+void	calc_step_n_sidedist(t_info *o);
 int		dd_analyzer(t_info *o);
 int		calc_wall_size(t_info *o, int side, int *line_height, int *start);
 double	ft_choose_pixel(t_info *o, int side, int line_height, double *texture_pos, int start);
